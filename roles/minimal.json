@@ -1,0 +1,6 @@
+{
+	"name": "minimal",
+	"run_list": [
+		"install_base",
+	]
+}
