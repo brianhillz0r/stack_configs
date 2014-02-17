@@ -1,9 +1,10 @@
 #!/bin/sh
-CHEF=$(which chef-solo)
+CHEF=$(which chef-solo 2>/dev/null)
 _RET=$?
 if [ $_RET -ne 0 ]
 	then
 		echo "Did you remember to install chef-solo?"
+		exit 1
 fi
 
 CHEF_CONFIG=$1
@@ -14,14 +15,16 @@ if [ -z $CHEF_CONFIG ]
 	then
 		CHEF_CONFIG="$PWD/config.rb"
 	else
-		exit $?
+		echo "Chef config file not found in: $CHEF_CONFIG"
+		exit 1
 fi
 
 if [ -z $CHEF_ROLE ]
 	then
 		CHEF_ROLE="$PWD/roles/minimal.json"
 	else
-		exit $?
+		echo "Chef JSON attributes not found in: $CHEF_ROLE"
+		exit 1
 fi	
 
 if [ -n $DEBUG ]
@@ -55,5 +58,6 @@ if [ -x $CHEF ]
 	then
 		$CHEF -c $CHEF_CONFIG -j $CHEF_ROLE $LOG_LEVEL
 	else
-		exit $?
+		echo "Chef exists, but isn't executable. Fix your Chef installation."
+		exit 1
 fi
