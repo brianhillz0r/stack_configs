@@ -3,7 +3,7 @@ CHEF=$(which chef-solo)
 _RET=$?
 if [ $_RET -ne 0 ]
 	then
-		exit $?
+		echo "Did you remember to install chef-solo?"
 fi
 
 CHEF_CONFIG=$1
