@@ -4,7 +4,16 @@ Tested on and built for:
 
 CentOS 6.5
 ==============================
-# yum -y install gcc g++ make automake autoconf curl-devel openssl-devel zlib-devel httpd-devel apr-devel apr-util-devel sqlite-devel ruby-rdoc ruby-devel
-# \curl -sSL https://get.rvm.io | bash -s stable --ruby 1.8.7
-# gem install chef
 # chef-solo -c config.rb -j roles/minimal.json -ldebug
+# curl http://www.21190consulting.com/chef-solo.tar.gz
+# tar zxvf chef-solo.tar.gz
+# cd stack_configs
+#### install RVM...
+# ./lets_go.sh
+# gem install chef
+#.....wait a while....
+#
+
+TODO:
+gem install bundler --pre
+GEM CACHE 
