@@ -2,8 +2,9 @@
 	"name": "repos",
 	"description": "first things first, let's install some repos.",
 	"run_list":
-		[ "recipe[yum::default]",
+		[ "recipe[yum-centos::default]",
 		  "recipe[yum-epel::default]",
 		  "recipe[yum-ius::default]",
-		  "recipe[yum-percona::default]" ]
+		  "recipe[yum-percona::default]",
+		  "recipe[build-essential::default]" ]
 }
