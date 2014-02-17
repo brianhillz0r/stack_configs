@@ -6,5 +6,6 @@
 		  "recipe[yum-epel::default]",
 		  "recipe[yum-ius::default]",
 		  "recipe[yum-percona::default]",
-		  "recipe[build-essential::default]" ]
+		  "recipe[build-essential::default]",
+		  "recipe[php-fpm::default]" ]
 }
