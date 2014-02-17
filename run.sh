@@ -1,29 +1,39 @@
 #!/bin/sh
+if [ "$1" == "--help" ]
+	then
+		echo "./run.sh chef-config.rb roles/chef-role.rb [loglevel]"
+		exit 0
+fi
+echo "checking which chef..."
 CHEF=$(which chef-solo)
 _RET=$?
+echo "checking return code"
 if [ $_RET -ne 0 ]
 	then
 		exit $?
 fi
+echo "checking variables passed..."
 
-CHEF_CONFIG=$1
+CHEF_CONFIG="$1"
 CHEF_ROLE=$2
 DEBUG=$3
 
-if [ -z $CHEF_CONFIG ]
+echo "$PWD/$CHEF_CONFIG"
+
+echo "checking chef config..."
+if [ ! -f $CHEF_CONFIG ]
 	then
 		CHEF_CONFIG="$PWD/config.rb"
-	else
-		exit $?
+		echo "setting.."
 fi
-
+echo "$CHEF_CONFIG"
+echo "checking chef role..."
 if [ -z $CHEF_ROLE ]
 	then
 		CHEF_ROLE="$PWD/roles/minimal.json"
-	else
-		exit $?
-fi	
-
+fi
+echo "$CHEF_ROLE"
+echo "checking debug..."
 if [ -n $DEBUG ]
 	then
 		case "$DEBUG" in
@@ -50,6 +60,8 @@ if [ -n $DEBUG ]
 	else
 		LOG_LEVEL="-linfo"
 fi			
+
+echo $LOG_LEVEL
 
 if [ -x $CHEF ]
 	then
