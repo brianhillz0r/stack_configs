@@ -1,8 +1,0 @@
-site :opscode
-
-cookbook 'yum'
-cookbook 'yum-epel'
-cookbook 'yum-ius'
-cookbook 'yum-percona'
-cookbook 'yum-centos'
-cookbook 'build-essential'
