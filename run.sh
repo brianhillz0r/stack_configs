@@ -1,5 +1,5 @@
 #!/bin/sh
-CHEF=$(which chef-solo 2>/dev/null)
+CHEF=$(which chef-solo)
 _RET=$?
 if [ $_RET -ne 0 ]
 	then
@@ -7,11 +7,11 @@ if [ $_RET -ne 0 ]
 		exit 1
 fi
 
-CHEF_CONFIG=$1
-CHEF_ROLE=$2
+CHEF_CONFIG="$(pwd)/$1"
+CHEF_ROLE="$(pwd)/$2"
 DEBUG=$3
 
-if [ -z $CHEF_CONFIG ]
+if [ ! -f $PWD/$CHEF_CONFIG ]
 	then
 		CHEF_CONFIG="$PWD/config.rb"
 	else
@@ -19,9 +19,9 @@ if [ -z $CHEF_CONFIG ]
 		exit 1
 fi
 
-if [ -z $CHEF_ROLE ]
+if [ ! -f "$PWD/$CHEF_ROLE" ]
 	then
-		CHEF_ROLE="$PWD/roles/minimal.json"
+		CHEF_ROLE="$PWD/roles/repo.json"
 	else
 		echo "Chef JSON attributes not found in: $CHEF_ROLE"
 		exit 1
